@@ -12,6 +12,13 @@
 		<java.version>1.8</java.version>
 		<javax.inject.version>1</javax.inject.version>
 	</properties>
+	
+	<developers>
+		<developer>
+			<name>Gustavo Diniz</name>
+			<email>gdinsantos1@gmail.com</email>
+		</developer>
+	</developers>
 
 	<dependencies>
 
@@ -21,13 +28,30 @@
 			<artifactId>javax.inject</artifactId>
 			<version>${javax.inject.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- TESTES -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
 	<build>
-
 		<plugins>
-
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
@@ -46,9 +70,12 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-
 		</plugins>
-
 	</build>
 
+	<modules>
+		<module>fiveware-test-service</module>
+		<module>fiveware-test-web</module>
+		<module>fiveware-test-model</module>
+	</modules> 
 </project>

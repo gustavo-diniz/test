@@ -5,5 +5,5 @@
     <artifactId>fiveware-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>fiveware-test-model</artifactId>
+  <artifactId>fiveware-test-service</artifactId>
 </project>
