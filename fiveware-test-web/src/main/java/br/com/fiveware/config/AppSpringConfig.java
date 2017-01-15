@@ -7,7 +7,6 @@ public class AppSpringConfig extends AbstractAnnotationConfigDispatcherServletIn
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-
 		return null;
 	}
 
