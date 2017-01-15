@@ -10,7 +10,7 @@ import br.com.fiveware.entity.VagaEntity;
 public class VagaDAOImpl extends AbstractDAO implements VagaDAO {
 
 	@Override
-	public void salvarVaga(VagaEntity vaga) {
+	public void salvarVaga(VagaEntity vaga) throws Exception {
 		persist(vaga);
 	}
 

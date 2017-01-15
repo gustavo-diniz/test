@@ -4,6 +4,6 @@ import br.com.fiveware.to.VagaTO;
 
 public interface VagaService {
 	
-	void cadastrarVaga(VagaTO to);
+	Boolean cadastrarVaga(VagaTO to);
 
 }

@@ -1,18 +1,17 @@
 package br.com.fiveware.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
 import br.com.fiveware.service.VagaService;
 import br.com.fiveware.to.VagaTO;
+import br.com.fiveware.to.response.VagaResponse;
 
 @Controller
 public class FivewareController {
@@ -20,30 +19,32 @@ public class FivewareController {
 	@Autowired
 	private VagaService vagaService;
 	
-	@RequestMapping(value = "/helloworld", method = RequestMethod.GET)
-	public String dizHelloWorld(ModelMap model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String redirectTo() {
 
-		model.addAttribute("mensagem", "Hello World! Data atual: " + new Date());
-
-		return "destino";
+		return "cadastro";
 	}
 	
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
-	public String formCurriculo(ModelMap model) {
-
-		model.addAttribute("mensagem", " " + new Date());
-
+	public String formCurriculo() {
+		
 		return "cadastro";
 	}
 	
-	@RequestMapping(value = "/salvar-cadastro", method = RequestMethod.POST)
-	public String salvarCadastro(@RequestBody String vagaTO) {  
+	@RequestMapping(value = "/salvar-cadastro", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody VagaResponse salvarCadastro(@RequestBody String vagaTO) {  
 		
-		System.out.println(vagaTO);
 		VagaTO vaga = new Gson().fromJson(vagaTO, VagaTO.class);
-		vagaService.cadastrarVaga(vaga);
+		Boolean sucesso = vagaService.cadastrarVaga(vaga);
 		
-		return "cadastro";
+		VagaResponse vagaResponse = new VagaResponse();
+		if(sucesso){
+			vagaResponse.setMensagem("Registro incluído com sucesso !");
+		}else{
+			vagaResponse.setMensagem("Erro ao salvar registro !");
+		}
+		
+		return vagaResponse;
 	}
 	
 }

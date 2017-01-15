@@ -37,6 +37,7 @@
 				</div>
 				<div class="form-group">
 					<label for="sel1">Prazo para início:</label> <select class="form-control" id="select-prz">
+						<option value="">Selecione</option>
 						<option value="imediato">Imediato</option>
 						<option value="15 dias">Ate 15 dias</option>
 						<option value="a negociar">A Negociar</option>

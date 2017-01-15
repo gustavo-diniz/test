@@ -16,19 +16,47 @@ public class VagaServiceImpl implements VagaService {
 
 	@Autowired
 	private VagaDAO vagaDAO;
-	
+
 	@Override
-	public void cadastrarVaga(VagaTO to) {
-		VagaEntity vaga = new VagaEntity();
-		vaga.setTituloVaga(to.getTitulo());
-		vaga.setDescVaga(to.getDescricao());
-		vaga.setPermiteClt(to.getClt() ? 1 : 0);
-		vaga.setPermitePj(to.getPj() ? 1 : 0);
-		vaga.setPermiteCoop(to.getCoop() ? 1 : 0);
-		vaga.setTipoVaga(to.getTipoVaga());
-		vaga.setPrazoInicio(to.getPrazo());
+	public Boolean cadastrarVaga(VagaTO to) {
+
+		Boolean sucess;
+		try {
+			if(vagaValida(to)){
+				VagaEntity vaga = new VagaEntity();
+				vaga.setTituloVaga(to.getTitulo());
+				vaga.setDescVaga(to.getDescricao());
+				vaga.setPermiteClt(to.getClt() ? 1 : 0);
+				vaga.setPermitePj(to.getPj() ? 1 : 0);
+				vaga.setPermiteCoop(to.getCoop() ? 1 : 0);
+				vaga.setTipoVaga(to.getTipoVaga());
+				vaga.setPrazoInicio(to.getPrazo());
+
+				vagaDAO.salvarVaga(vaga);
+				sucess = true;
+			}else{
+				sucess = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			sucess = false;
+		}
 		
-		vagaDAO.salvarVaga(vaga);
+		return sucess;
+	}
+	
+	private Boolean vagaValida(VagaTO to){
+		if(to.getTitulo().equals("") || to.getTitulo().length() > 100){
+			return false;
+		}else if(to.getDescricao().equals("") || to.getDescricao().length() > 500){
+			return false;
+		}else if(to.getTipoVaga().equals("") || to.getTipoVaga().length() > 30){
+			return false;
+		}else if(to.getPrazo().equals("") || to.getPrazo().length() > 50){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 }
