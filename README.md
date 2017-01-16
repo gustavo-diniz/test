@@ -1,3 +1,17 @@
+# Instruções para execução:
+ o projeto foi configurado com jetty, para executar o projeta, faça:
+ - rode o mvn clean install no projeto (fiveware-test), assim o mesmo será instalado e configurado
+   no repositório.
+ 
+ - executa o script FIVEWARE_DB_SCRIPT.sql no mysql.
+ 
+ - modifique o arquivo application.properties com as informações corretas do seu banco, como login, 
+   senha , url , etc
+   
+ - execute o comando maven mvn jetty:run para rodar o projeto.
+ 
+   Fim ;)  
+
 # Test
 
 O objetivo é criar um fomulário de cadastro e armazenar as informações digitadas no banco de dados, neste projeto, utilize o Spring Framework para o MVC e persistência de dados juntamente com o Hibernate. Após a finalização faça commit e envie o link para esdras.tavares@fiveware.com.br
